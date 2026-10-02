@@ -1,0 +1,1556 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Native Surf Club</title>
+    <meta
+      name="description"
+      content="Native Surf Club: Golden Sunset and Tropic Tides. Capture the easy, sun-soaked spirit of summer."
+    />
+    <meta name="theme-color" content="#0A1F8F" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0a1f8f;
+        --navy-dark: #081763;
+        --ink: #000000;
+        --white: #ffffff;
+        --black: #000000;
+        --grey-line: #e2e2e2;
+        --grey-bg: #f5f5f5;
+        --limited: #7a2942;
+        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+        --container: 1240px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: var(--ink);
+        background: var(--white);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--navy);
+        outline-offset: 2px;
+      }
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--navy);
+        color: var(--white);
+        padding: 0.75rem 1.25rem;
+        z-index: 300;
+        border-radius: 0 0 8px 0;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+      .container {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== 1. Announcement banner ===== */
+      .announce {
+        background: var(--navy);
+        color: var(--white);
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding:8px 24px;
+        gap: 16px;
+      }
+      .announce__spacer {
+        display: block;
+      }
+      .announce__promo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        justify-self: center;
+      }
+      .announce__arrow {
+        color: var(--white);
+        font-size: 15px;
+        opacity: 0.85;
+        transition: opacity 0.2s var(--ease);
+      }
+      .announce__arrow:hover {
+        opacity: 1;
+      }
+      .announce__text {
+        font-size: 15px;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: var(--white);
+        white-space: nowrap;
+        border-bottom: 1px solid var(--white);
+      }
+      .announce__actions {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        justify-self: end;
+      }
+      .quiz-btn {
+        background: var(--white);
+        color: var(--black);
+        padding: 3px 5px;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: transform 0.2s var(--ease);
+      }
+      .quiz-btn:hover {
+        transform: translateY(-1px);
+      }
+      .announce__link {
+        font-size: 11px;
+        font-weight: 300;
+        color: var(--white);
+        white-space: nowrap;
+      }
+      .announce__link:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 700px) {
+        .announce {
+          grid-template-columns: auto 1fr auto;
+        }
+        .announce__spacer {
+          display: none;
+        }
+        .announce__text {
+          font-size: 11px;
+        }
+        .announce__actions {
+          gap: 12px;
+        }
+        .announce__link {
+          display: none;
+        }
+      }
+
+      /* ===== 2. Floating nav ===== */
+      .navwrap {
+        margin-top: 15px;
+        padding: 0 49px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .sitenav {
+        max-width: 100%;
+        margin: 0 auto;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 28px;
+      }
+      .sitenav__logo img {
+        height: 47px;
+        width: auto;
+      }
+      .sitenav__links {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        list-style: none;
+      }
+      .sitenav__links a {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink);
+        position: relative;
+        padding-bottom: 3px;
+      }
+      .sitenav__links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 100%;
+        bottom: 0;
+        height: 2px;
+        background: var(--ink);
+        transition: right 0.25s var(--ease);
+      }
+      .sitenav__links a:hover::after {
+        right: 0;
+      }
+      .sitenav__icons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .sitenav__icons button svg {
+        width: 25px;
+        height: 25px;
+        stroke: var(--ink);
+        fill: none;
+        stroke-width: 1.8;
+      }
+      .sitenav__burger {
+        display: none;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        flex: none;
+      }
+      .sitenav__burger span {
+        position: absolute;
+        left: 3px;
+        right: 3px;
+        height: 2px;
+        background: var(--ink);
+        transition:
+          transform 0.25s var(--ease),
+          opacity 0.25s var(--ease);
+      }
+      .sitenav__burger span:nth-child(1) {
+        top: 9px;
+      }
+      .sitenav__burger span:nth-child(2) {
+        top: 15px;
+      }
+      .sitenav__burger span:nth-child(3) {
+        top: 21px;
+      }
+      .sitenav__burger[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .sitenav__burger[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .sitenav__burger[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        max-width: 1320px;
+        margin: 10px auto 0;
+        background: var(--white);
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+        overflow: hidden;
+      }
+      .mobile-menu.is-open {
+        display: block;
+      }
+      .mobile-menu ul {
+        list-style: none;
+      }
+      .mobile-menu li {
+        border-top: 1px solid var(--grey-line);
+      }
+      .mobile-menu li:first-child {
+        border-top: none;
+      }
+      .mobile-menu a {
+        display: block;
+        padding: 16px 28px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      @media (max-width: 800px) {
+        .sitenav__links {
+          display: none;
+        }
+        .sitenav__burger {
+          display: block;
+        }
+      }
+
+      /* ===== 3 & 4. Eyebrow + page title ===== */
+      .page-eyebrow-wrap {
+        display: flex;
+        justify-content: center;
+        padding-top:25px;
+      }
+      .page-eyebrow {
+        border: 1.5px solid var(--ink);
+        color: var(--ink);
+        padding: 3px 10px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .page-title {
+        text-align: center;
+        color: var(--ink);
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        font-size: 87px;
+        margin: 22px 0 34px;
+        padding: 0 20px;
+      }
+      @media (max-width: 900px) {
+        .page-title {
+          font-size: 42px;
+        }
+      }
+      @media (max-width: 520px) {
+        .page-title {
+          font-size: 30px;
+          margin: 16px 0 26px;
+        }
+      }
+
+      /* ===== 5. Hero image + body copy ===== */
+      .hero-image-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .hero-image-wrap .frame {
+        border-radius: 26px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+      }
+      .hero-image-wrap .frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero-copy {
+        max-width: 760px;
+        margin: 32px auto 0;
+        padding: 0 24px;
+        text-align: center;
+        color: var(--ink);
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 1.4;
+      }
+      @media (max-width: 900px) {
+        .hero-copy {
+          font-size: 21px;
+        }
+      }
+      @media (max-width: 520px) {
+        .hero-copy {
+          font-size: 17px;
+        }
+      }
+
+      /* ===== 6. Two scent cards ===== */
+      .scent-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        max-width: 492px;
+        margin: 64px auto 0;
+        padding: 0 24px;
+      }
+      @media (max-width: 640px) {
+        .scent-cards {
+          grid-template-columns: 1fr;
+          max-width: 380px;
+        }
+      }
+      .scent-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        text-align: center;
+      }
+      .scent-card__img {
+        height: 130px;
+        width: auto;
+        object-fit: contain;
+      }
+      .scent-card h3 {
+        font-size: 28px;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 120%;
+        letter-spacing: 0.05em;
+      }
+      .scent-card p {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 130%;
+        letter-spacing: 0.03em;
+        color: #333;
+        max-width: 260px;
+        font-family: "Inter";
+      }
+      .scent-card__cta {
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 4px;
+        padding: 10px 12px;
+        height: 36px;
+        margin-top: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition:
+          background 0.25s var(--ease),
+          transform 0.2s var(--ease);
+      }
+      .scent-card__cta:hover {
+        background: var(--navy-dark);
+        transform: translateY(-2px);
+      }
+
+      /* ===== 7 & 9. Large story banners with overlay text ===== */
+      .story-wrap {
+        max-width: 1100px;
+        margin: 80px auto 0;
+        padding: 0 24px;
+      }
+      .story {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+        border-radius: 26px;
+      }
+      .story img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .story__scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.15) 0%,
+          rgba(0, 0, 0, 0.45) 100%
+        );
+      }
+      .story__content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 24px;
+        text-align: center;
+        color: var(--white);
+      }
+      .story__content h2 {
+        font-size: clamp(32px, 5vw, 52px);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        text-shadow: 0 3px 14px rgba(0, 0, 0, 0.3);
+      }
+      .story__content p {
+        max-width: 560px;
+        font-size: clamp(14px, 1.6vw, 17px);
+        line-height: 1.6;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ===== 8 & 10. Product carousels ===== */
+      .product-row {
+        padding: 56px 0 70px;
+        background: var(--white);
+      }
+      .product-row__inner {
+        position: relative;
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .product-row__track {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+        justify-content: center;
+      }
+      .product-row__track::-webkit-scrollbar {
+        display: none;
+      }
+      .product-tile {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        text-align: center;
+        padding: 20px;
+        border: 1px solid var(--grey-line);
+        border-radius: 14px;
+        position: relative;
+      }
+      .product-tile__badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: var(--limited);
+        color: var(--white);
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 3px;
+      }
+      .product-tile__photo {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--grey-bg);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .product-tile__photo img {
+        max-height: 180px;
+        width: auto;
+        object-fit: contain;
+      }
+      .product-tile h4 {
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .product-tile__category {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #666;
+        margin-top: -6px;
+      }
+      .btn-cart {
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 140px;
+        padding: 12px 28px;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-top: 6px;
+        transition: background 0.25s var(--ease);
+      }
+      .btn-cart:hover {
+        background: var(--navy-dark);
+      }
+      .product-row__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 1px solid var(--grey-line);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: var(--ink);
+        transition:
+          transform 0.2s var(--ease),
+          background 0.2s var(--ease),
+          opacity 0.2s var(--ease);
+        z-index: 2;
+      }
+      .product-row__arrow--prev {
+        left: -6px;
+      }
+      .product-row__arrow--next {
+        right: -6px;
+      }
+      .product-row__arrow:hover {
+        background: var(--grey-bg);
+      }
+      .product-row__arrow--prev:hover {
+        transform: translateY(-50%) translateX(-2px);
+      }
+      .product-row__arrow--next:hover {
+        transform: translateY(-50%) translateX(2px);
+      }
+      .product-row__arrow.is-disabled {
+        opacity: 0.3;
+        color: #999;
+        box-shadow: none;
+        cursor: default;
+        pointer-events: none;
+      }
+      .product-row__scrollbar {
+        display: none;
+        height: 4px;
+        border-radius: 4px;
+        background: var(--grey-line);
+        max-width: var(--container);
+        margin: 18px auto 0;
+        padding: 0 24px;
+      }
+      .product-row__scrollbar-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 4px;
+        background: var(--navy);
+        transition: width 0.1s linear;
+      }
+      @media (max-width: 900px) {
+        .product-row__arrow {
+          display: none;
+        }
+        .product-row__scrollbar {
+          display: block;
+        }
+        .product-row__track {
+          justify-content: flex-start;
+        }
+      }
+
+      /* ===== 11. Scroll collage ===== */
+      .collage-scroll {
+        position: relative;
+        height: 220vh;
+        margin-top: 40px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .collage-scroll {
+          height: auto;
+        }
+      }
+      .collage-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: var(--white);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .collage-sticky {
+          position: relative;
+          height: auto;
+        }
+      }
+      .collage__grid {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "tl center tr" "bl center br";
+        gap: 10px;
+        padding: 40px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .collage__grid {
+          position: relative;
+          height: 80vh;
+        }
+      }
+      .collage__cell {
+        overflow: hidden;
+        border-radius: 14px;
+        background: var(--grey-bg);
+      }
+      .collage__cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .collage__cell--tl {
+        grid-area: tl;
+      }
+      .collage__cell--tr {
+        grid-area: tr;
+      }
+      .collage__cell--bl {
+        grid-area: bl;
+      }
+      .collage__cell--br {
+        grid-area: br;
+      }
+      .collage__cell--bc {
+        grid-area: bc;
+      }
+      .collage__cell--center-placeholder {
+        grid-area: center;
+        visibility: hidden;
+      }
+      .collage__float {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        overflow: hidden;
+        will-change: width, height, top, left, border-radius;
+        background: var(--grey-bg);
+      }
+      .collage__float img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .collage__float {
+          position: absolute;
+        }
+      }
+
+      /* ===== 12. Reviews + newsletter ===== */
+      .reviews {
+        padding: 90px 24px 50px;
+        text-align: center;
+      }
+      .reviews h2 {
+        color: var(--navy);
+        font-size: clamp(22px, 3.4vw, 32px);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .reviews__stars {
+        margin-top: 18px;
+        color: var(--navy);
+        font-size: 26px;
+        letter-spacing: 6px;
+      }
+      .newsletter {
+        padding: 60px 24px 90px;
+        text-align: center;
+      }
+      .newsletter h2 {
+        color: var(--navy);
+        font-size: clamp(20px, 2.8vw, 28px);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        max-width: 640px;
+        margin: 0 auto;
+        line-height: 1.35;
+      }
+      .newsletter__form {
+        display: flex;
+        max-width: 520px;
+        margin: 32px auto 0;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid var(--grey-line);
+      }
+      .newsletter__form input {
+        flex: 1;
+        border: none;
+        background: var(--grey-bg);
+        padding: 16px 18px;
+        font-family: inherit;
+        font-size: 14px;
+        color: #333;
+      }
+      .newsletter__form input:focus {
+        outline: none;
+      }
+      .newsletter__form button {
+        background: var(--navy);
+        color: var(--white);
+        padding: 0 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+      .newsletter__form button:hover {
+        background: var(--navy-dark);
+      }
+      .newsletter__legal {
+        max-width: 560px;
+        margin: 20px auto 0;
+        font-size: 11.5px;
+        color: #666;
+        line-height: 1.6;
+      }
+      .newsletter__legal a {
+        color: var(--navy);
+        text-decoration: underline;
+      }
+
+      /* ===== 13. Footer ===== */
+      .site-footer {
+        border-top: 1.5px solid var(--navy);
+        padding: 56px 24px 40px;
+      }
+      .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        max-width: var(--container);
+        margin: 0 auto;
+      }
+      @media (max-width: 820px) {
+        .footer-columns {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .footer-columns {
+          grid-template-columns: 1fr;
+        }
+      }
+      .footer-col h5 {
+        color: var(--navy);
+        font-size: 12.5px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .footer-col a {
+        display: block;
+        color: var(--navy);
+        font-size: 13.5px;
+        padding: 5px 0;
+      }
+      .footer-col a:hover {
+        text-decoration: underline;
+      }
+      .footer-wordmark {
+        text-align: center;
+        color: var(--navy);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        font-size: clamp(64px, 14vw, 150px);
+        line-height: 1;
+        margin: 64px 0 36px;
+      }
+      .footer-socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+      }
+      .footer-socials a {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s var(--ease);
+      }
+      .footer-socials a:hover {
+        transform: translateY(-3px);
+      }
+      .footer-socials img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+      .footer-socials .tyb {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-style: italic;
+        color: var(--navy);
+        font-size: 20px;
+        width: auto;
+        height: auto;
+        background: none;
+        border-radius: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- 1. ANNOUNCEMENT BANNER -->
+    <div class="announce">
+      <span class="announce__spacer"></span>
+      <div class="announce__promo">
+        <button class="announce__arrow" aria-label="Previous promo">
+          &larr;
+        </button>
+        <a class="announce__text" href="https://www.nativecos.com/collections/shop-all" target="_blank" rel="noopener noreferrer">Free gift on orders $35+</a>
+        <button class="announce__arrow" aria-label="Next promo">&rarr;</button>
+      </div>
+      <div class="announce__actions">
+        <a class="quiz-btn" href="https://www.nativecos.com/pages/scent-quiz " target="_blank" rel="noopener noreferrer">Take Our Scent Quiz</a>
+        <a class="announce__link" href="https://www.nativecos.com/pages/rewards " target="_blank" rel="noopener noreferrer">Rewards</a>
+        <a class="announce__link" href="https://www.nativecos.com/pages/contact-us " target="_blank" rel="noopener noreferrer">Help</a>
+      </div>
+    </div>
+
+    <!-- 2. FLOATING NAV -->
+    <div class="navwrap">
+      <nav class="sitenav">
+        <a class="sitenav__logo" href="https://www.nativecos.com/" target="_blank" rel="noopener noreferrer" aria-label="Native home">
+          <img src="img/native-logo.png" alt="Native" />
+        </a>
+        <ul class="sitenav__links">
+          <li><a href="https://www.nativecos.com/collections/shop-all" target="_blank" rel="noopener noreferrer">Shop</a></li>
+          <li><a href="https://www.nativecos.com/collections/new-arrivals" target="_blank" rel="noopener noreferrer">Featured</a></li>
+          <li><a href="https://www.nativecos.com/pages/scents" target="_blank" rel="noopener noreferrer">Scents</a></li>
+          <li><a href="https://www.nativecos.com/pages/bundles" target="_blank" rel="noopener noreferrer">Bundles</a></li>
+          <li><a href="https://www.nativecos.com/pages/about-us" target="_blank" rel="noopener noreferrer">About</a></li>
+        </ul>
+        <div class="sitenav__icons">
+          <button aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" /> -->
+              <path d="M8.97295 16.8659C10.932 17.3019 12.8809 16.9658 14.5178 16.0717L15.3112 19.5137C15.3112 19.5137 15.5614 19.8306 15.8894 20.3375C16.2297 20.8365 16.6739 21.508 17.0893 22.1987L18.2541 24.0813L18.7656 24.9485L21.6469 23.1161L21.0784 22.2852L19.8674 20.4319C19.4579 19.8176 19.0655 19.1921 18.6906 18.556C18.3707 18.044 18.1898 17.683 18.1898 17.683L15.409 15.505C16.9696 14.3688 18.0623 12.7025 18.4823 10.8184C19.4365 6.5302 16.7229 2.26322 12.4347 1.30901C8.14656 0.354797 3.87958 3.06843 2.92537 7.35659C1.97116 11.6447 4.68479 15.9117 8.97295 16.8659Z" fill="#0E1029"></path>
+              <path d="M10.7891 3.83594C13.0728 3.91734 15.5152 5.57571 15.9252 8.09052" stroke="white" stroke-linecap="round"></path>
+            </svg>
+          </button>
+          <button aria-label="Account">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- <circle cx="12" cy="8" r="4" /> -->
+              <path d="M6.13721 13.7891C5.41354 13.7891 4.71133 14.0299 4.14503 14.477C1.93945 16.2164 0.498067 18.8869 0.428919 21.9092C0.400306 22.187 0.493298 22.466 0.682859 22.671C0.862883 22.8844 1.12755 23.0048 1.40534 23.0036H19.4077C19.577 22.9977 19.7391 22.9261 19.8583 22.8081H19.8405C19.9513 22.6853 20.0074 22.5244 19.9978 22.3587C20.0705 19.1814 18.6125 16.3261 16.2984 14.4913C15.7285 14.0382 15.0204 13.7903 14.2919 13.7903H6.13721V13.7891Z" fill="#0E1029"></path>
+              <path d="M10 12C13.3137 12 16 9.31371 16 6C16 2.68629 13.3137 0 10 0C6.68629 0 4 2.68629 4 6C4 9.31371 6.68629 12 10 12Z" fill="#0E1029"></path>
+            </svg>
+          </button>
+          <button aria-label="Shopping bag">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.9789 20.766L19.5753 9.54255C19.5753 9.54255 19.5753 9.44681 19.5753 9.40425L18.6928 6.80851C18.4376 6.24468 17.8634 5.88298 17.2361 5.89362H15.0245V4.93617C15.0138 2.47872 13.0361 0.5 10.5905 0.5C8.14496 0.5 6.1566 2.48936 6.1566 4.93617V5.85106H3.95559C3.37078 5.8617 2.83913 6.20213 2.58394 6.73404L1.47812 9.38298C1.45686 9.43617 1.43559 9.5 1.43559 9.56383L0.0214126 20.766C-0.212511 22.5851 1.0847 24.2553 2.90293 24.4787C3.04116 24.5 3.17939 24.5 3.31762 24.5H17.672C19.5115 24.5 20.9895 23.0106 20.9895 21.1702C20.9895 21.0319 20.9895 20.8936 20.9683 20.7553L20.9789 20.766ZM10.5905 2.30851C12.0579 2.30851 13.2488 3.5 13.2488 4.96808V5.88298H7.9323V4.96808C7.9323 3.5 9.12319 2.30851 10.5905 2.30851ZM5.93331 8.95745H3.40268C3.32825 8.95745 3.25382 8.91489 3.22192 8.85106C3.19002 8.78723 3.19002 8.71277 3.22192 8.64894L3.77483 7.31915C3.80673 7.24468 3.87053 7.20213 3.94496 7.19149H6.14597V8.73404C6.14597 8.8617 6.05027 8.95745 5.92268 8.96809L5.93331 8.95745ZM13.0255 8.98936H8.15559C8.028 8.98936 7.9323 8.88298 7.9323 8.75532V7.21277H13.2488V8.75532C13.2488 8.88298 13.1531 8.97872 13.0255 8.98936ZM17.8741 8.85106C17.8315 8.91489 17.7677 8.94681 17.6827 8.94681H15.2371C15.1095 8.94681 15.0138 8.84043 15.0138 8.71277V7.20213H17.2255C17.2893 7.20213 17.3531 7.24468 17.3743 7.30851L17.8634 8.6383C17.8953 8.70213 17.8953 8.7766 17.8634 8.84043L17.8741 8.85106Z" fill="#0E1029"></path>
+            </svg>
+          </button>
+          <button
+            class="sitenav__burger"
+            id="burgerBtn"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+            aria-label="Open menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <ul>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Featured</a></li>
+          <li><a href="#">Scents</a></li>
+          <li><a href="#">Bundles</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main id="main">
+      <!-- 3 & 4. EYEBROW + TITLE -->
+      <div class="page-eyebrow-wrap">
+        <span class="page-eyebrow">New Arrival</span>
+      </div>
+      <h1 class="page-title">Native Surf Club</h1>
+
+      <!-- 5. HERO IMAGE + BODY COPY -->
+      <div class="hero-image-wrap">
+        <div class="frame">
+          <img
+            src="img/Surf_Club_2026_Landing_Page_Hero.webp"
+            alt="Ocean and beach, Native Surf Club"
+            loading="eager"
+          />
+        </div>
+      </div>
+      <p class="hero-copy">
+        Capture the easy, sun-soaked spirit of summer in scents that feel fresh,
+        warm, and transportive. Meet Golden Sunset and Tropic Tides, and catch
+        the clean wave.
+      </p>
+
+      <!-- 6. TWO SCENT CARDS -->
+      <div class="scent-cards">
+        <div class="scent-card">
+          <img
+            class="scent-card__img"
+            src="img/Fragrance_Cue_Golden_Sunset.webp"
+            alt="Golden Sunset scent notes"
+          />
+          <h3 class="scent-card__title">Golden Sunset</h3>
+          <p>Oakwood. Golden Amber. Lavender. Sandalwood.</p>
+          <a class="scent-card__cta" href="#golden-sunset">Shop This Scent</a>
+        </div>
+        <div class="scent-card">
+          <img
+            class="scent-card__img"
+            src="img/Fragrance_Cue_Tropic_Tides.avif"
+            alt="Tropic Tides scent notes"
+          />
+          <h3>Tropic Tides</h3>
+          <p>Juniper. Sea Salt. Amber.</p>
+          <a class="scent-card__cta" href="#tropic-tides">Shop This Scent</a>
+        </div>
+      </div>
+
+      <!-- 7. GOLDEN SUNSET STORY BANNER -->
+      <div class="story-wrap">
+        <section class="story" id="golden-sunset">
+          <img
+            src="img/Native_Surf_Club_Landing_Page_Scent_Cue_Banner_Golden_Sunset_Desktop.webp"
+            alt="Golden Sunset beach scene"
+            loading="lazy"
+          />
+          <div class="story__scrim"></div>
+          <div class="story__content">
+            <h2>Golden Sunset</h2>
+            <p>
+              Oakwood. Golden Amber. Lavender. Sandalwood.<br />Oakwood and
+              lavender unfolds into warm rum, creamy amber, and sandalwood
+              &mdash; pure golden hour.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- 8. GOLDEN SUNSET PRODUCTS -->
+      <section class="product-row">
+        <div class="product-row__inner">
+          <button
+            class="product-row__arrow product-row__arrow--prev"
+            aria-label="Previous Golden Sunset products"
+          >
+            &larr;
+          </button>
+          <div class="product-row__track">
+            <article class="product-tile">
+              <span class="product-tile__badge">Limited Edition</span>
+              <div class="product-tile__photo">
+                <img
+                  src="img/deodorant-golden.png"
+                  alt="Golden Sunset Deodorant"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Golden Sunset Deodorant</h4>
+              <p class="product-tile__category">Golden Sunset</p>
+              <a
+                class="btn-cart"
+                href="https://www.nativecos.com/products/deodorant-stick?variant=47815231701166"
+                target="_blank"
+                rel="noopener"
+                >Add to Cart</a
+              >
+            </article>
+
+            <article class="product-tile">
+              <span class="product-tile__badge">Limited Edition</span>
+              <div class="product-tile__photo">
+                <img
+                  src="img/bodywash-golden.png"
+                  alt="Golden Sunset Body Wash"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Golden Sunset Body Wash</h4>
+              <p class="product-tile__category">Golden Sunset</p>
+              <a
+                class="btn-cart"
+                href="https://www.nativecos.com/products/body-wash?variant=47815278231726"
+                target="_blank"
+                rel="noopener"
+                >Add to Cart</a
+              >
+            </article>
+
+            <article class="product-tile">
+              <span class="product-tile__badge">Limited Edition</span>
+              <div class="product-tile__photo">
+                <img
+                  src="img/deodorant-spray-golden.png"
+                  alt="Golden Sunset Deodorant Spray"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Golden Sunset Deodorant Spray</h4>
+              <p class="product-tile__category">Golden Sunset</p>
+              <a
+                class="btn-cart"
+                href="https://www.nativecos.com/products/deodorant-spray?variant=47890105958574"
+                target="_blank"
+                rel="noopener"
+                >Add to Cart</a
+              >
+            </article>
+          </div>
+          <button
+            class="product-row__arrow product-row__arrow--next"
+            aria-label="Next Golden Sunset products"
+          >
+            &rarr;
+          </button>
+        </div>
+        <div class="product-row__scrollbar" aria-hidden="true">
+          <div class="product-row__scrollbar-fill"></div>
+        </div>
+      </section>
+
+      <!-- 9. TROPIC TIDES STORY BANNER -->
+      <div class="story-wrap">
+        <section class="story" id="tropic-tides">
+          <img
+            width="2400"
+            height="600"
+            loading="lazy"
+            src="img/Native_Surf_Club_Landing_Page_Scent_Cue_Banner_Tropic_Tides_Desktop.webp"
+            alt="Tropic Tides surf scene"
+            loading="lazy"
+          />
+          <div class="story__scrim"></div>
+          <div class="story__content">
+            <h2>Tropic Tides</h2>
+            <p>
+              Juniper. Sea Salt. Amber.<br />Juniper and sea salt breezes over
+              florals and warm woods.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- 10. TROPIC TIDES PRODUCTS -->
+      <section class="product-row">
+        <div class="product-row__inner">
+          <button
+            class="product-row__arrow product-row__arrow--prev"
+            aria-label="Previous Tropic Tides products"
+          >
+            &larr;
+          </button>
+          <div class="product-row__track">
+            <article class="product-tile">
+              <span class="product-tile__badge">Limited Edition</span>
+              <div class="product-tile__photo">
+                <img
+                  src="img/deodorant.png"
+                  alt="Tropic Tides Deodorant"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Tropic Tides Deodorant</h4>
+              <p class="product-tile__category">Tropic Tides</p>
+              <a
+                class="btn-cart"
+                href="https://www.nativecos.com/products/deodorant-stick?variant=47815245660334"
+                target="_blank"
+                rel="noopener"
+                >Add to Cart</a
+              >
+            </article>
+
+            <article class="product-tile">
+              <span class="product-tile__badge">Limited Edition</span>
+              <div class="product-tile__photo">
+                <img
+                  src="img/bodywash.png"
+                  alt="Tropic Tides Body Wash"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Tropic Tides Body Wash</h4>
+              <p class="product-tile__category">Tropic Tides</p>
+              <a
+                class="btn-cart"
+                href="https://www.nativecos.com/products/body-wash?variant=47815299334318"
+                target="_blank"
+                rel="noopener"
+                >Add to Cart</a
+              >
+            </article>
+
+            <article class="product-tile">
+              <span class="product-tile__badge">Limited Edition</span>
+              <div class="product-tile__photo">
+                <img
+                  src="img/deodorant-spray.png"
+                  alt="Tropic Tides Deodorant Spray"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Tropic Tides Deodorant Spray</h4>
+              <p class="product-tile__category">Tropic Tides</p>
+              <a
+                class="btn-cart"
+                href="https://www.nativecos.com/products/deodorant-spray?variant=47890109497518"
+                target="_blank"
+                rel="noopener"
+                >Add to Cart</a
+              >
+            </article>
+          </div>
+          <button
+            class="product-row__arrow product-row__arrow--next"
+            aria-label="Next Tropic Tides products"
+          >
+            &rarr;
+          </button>
+        </div>
+        <div class="product-row__scrollbar" aria-hidden="true">
+          <div class="product-row__scrollbar-fill"></div>
+        </div>
+      </section>
+
+      <!-- 11. SCROLL COLLAGE -->
+      <section class="collage-scroll" id="collageScroll">
+        <div class="collage-sticky" id="collageSticky">
+          <div class="collage__grid">
+            <div class="collage__cell collage__cell--tl">
+              <img src="img/Surf_Club_2026_ParallaxGrid_Desktop_Top_Left.webp" alt="" />
+            </div>
+            <div class="collage__cell collage__cell--tr">
+              <img src="img/Surf_Club_2026_ParallaxGrid_Desktop_Top_Right.webp" alt="" />
+            </div>
+            <div
+              class="collage__cell collage__cell--center-placeholder"
+              id="collagePlaceholder"
+            ></div>
+            <div class="collage__cell collage__cell--bl">
+              <img src="img/Surf_Club_2026_ParallaxGrid_Desktop_Bottom_Right.webp" alt="" />
+            </div>
+            <div class="collage__cell collage__cell--br">
+              <img src="img/Surf_Club_2026_ParallaxGrid_Desktop_Bottom_Left.webp" alt="" />
+            </div>
+          
+          <div class="collage__float" id="collageFloat">
+            <img
+              src="img/Surf_Club_2026_ParallaxGrid_Desktop_Middle.webp"
+              alt="Native Surf Club"
+              id="collageFloatImg"
+            />
+          </div>
+     </div>
+      </section>
+
+      <!-- 12. REVIEWS + NEWSLETTER -->
+      <section class="reviews">
+        <h2>A Lot of Five-Star Smiles Over Here</h2>
+        <div class="reviews__stars" aria-hidden="true">
+          &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+      </section>
+      <section class="newsletter">
+        <h2>
+          Be the First to Know About New Products, Sales, and More from Native
+        </h2>
+        <form class="newsletter__form" onsubmit="return false">
+          <input
+            type="email"
+            placeholder="Enter email"
+            required
+            aria-label="Email address"
+          />
+          <button type="submit" aria-label="Sign up">&rarr;</button>
+        </form>
+        <p class="newsletter__legal">
+          By registering, I agree to receive emails from Native and other
+          trusted <a href="#">P&amp;G brands</a> and programs. I agree that
+          P&amp;G may provide you with personalized advertising via email and
+          other online channels. Click to read
+          <a href="#">P&amp;G Terms &amp; Conditions</a> and
+          <a href="#">Privacy</a>.
+        </p>
+      </section>
+    </main>
+
+    <!-- 13. FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h5>Products</h5>
+          <a href="#">Deodorant</a>
+          <a href="#">Body</a>
+          <a href="#">Hair</a>
+          <a href="#">Skincare</a>
+          <a href="#">Hand Soap</a>
+          <a href="#">Toothpaste</a>
+        </div>
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <a href="#">New Arrivals</a>
+          <a href="#">Best Sellers</a>
+          <a href="#">Limited Edition</a>
+          <a href="#">Bundles</a>
+          <a href="#">Last Chance Scents</a>
+          <a href="#">Shop All</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">Ingredients</a>
+          <a href="#">Our Story</a>
+          <a href="#">Our Never List</a>
+          <a href="#">Blog</a>
+          <a href="#">Sensitive Series Explained</a>
+          <a href="#">Scents</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#">Contact Us</a>
+          <a href="#">My Account</a>
+          <a href="#">Track Your Order</a>
+          <a href="#">Rewards</a>
+          <a href="#">FAQs</a>
+          <a href="#">Returns</a>
+          <a href="#">Loyalty Program Terms &amp; Conditions</a>
+          <a href="#">Creators Terms &amp; Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+
+      <div class="footer-wordmark">Native</div>
+
+      <div class="footer-socials" aria-label="Follow Native">
+        <a
+          href="https://www.tiktok.com/@native"
+          target="_blank"
+          rel="noopener"
+          aria-label="TikTok"
+          ><img src="img/icon-1.png" alt=""
+        /></a>
+        <a
+          href="https://www.instagram.com/native"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          ><img src="img/icon-2.png" alt=""
+        /></a>
+        <a
+          href="https://www.facebook.com/nativecos"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          ><img src="img/icon-3.png" alt=""
+        /></a>
+        <a href="#" aria-label="TYB" class="tyb">tyb</a>
+      </div>
+    </footer>
+
+    <script>
+      ;(function () {
+        // Hamburger menu (tablet/mobile)
+        var burgerBtn = document.getElementById("burgerBtn")
+        var mobileMenu = document.getElementById("mobileMenu")
+        if (burgerBtn && mobileMenu) {
+          burgerBtn.addEventListener("click", function () {
+            var open = burgerBtn.getAttribute("aria-expanded") === "true"
+            burgerBtn.setAttribute("aria-expanded", String(!open))
+            burgerBtn.setAttribute(
+              "aria-label",
+              open ? "Open menu" : "Close menu",
+            )
+            mobileMenu.classList.toggle("is-open", !open)
+          })
+          mobileMenu.addEventListener("click", function (e) {
+            if (e.target.tagName === "A") {
+              mobileMenu.classList.remove("is-open")
+              burgerBtn.setAttribute("aria-expanded", "false")
+              burgerBtn.setAttribute("aria-label", "Open menu")
+            }
+          })
+        }
+
+        // Product carousels: page by 3 on desktop (native smooth scroll),
+        // free scroll + progress bar on tablet/mobile
+        document.querySelectorAll(".product-row").forEach(function (section) {
+          var track = section.querySelector(".product-row__track")
+          if (!track) return
+          var prevBtn = section.querySelector(".product-row__arrow--prev")
+          var nextBtn = section.querySelector(".product-row__arrow--next")
+          var fill = section.querySelector(".product-row__scrollbar-fill")
+
+          function pageWidth() {
+            var tile = track.querySelector(".product-tile")
+            if (!tile) return track.clientWidth
+            var gap = parseFloat(getComputedStyle(track).columnGap) || 24
+            return (tile.getBoundingClientRect().width + gap) * 3
+          }
+
+          function updateState() {
+            var max = track.scrollWidth - track.clientWidth
+            var atStart = track.scrollLeft <= 4
+            var atEnd = track.scrollLeft >= max - 4
+            if (prevBtn) {
+              var prevDisabled = atStart || max <= 0
+              prevBtn.classList.toggle("is-disabled", prevDisabled)
+              prevBtn.setAttribute(
+                "aria-disabled",
+                prevDisabled ? "true" : "false",
+              )
+            }
+            if (nextBtn) {
+              var nextDisabled = atEnd || max <= 0
+              nextBtn.classList.toggle("is-disabled", nextDisabled)
+              nextBtn.setAttribute(
+                "aria-disabled",
+                nextDisabled ? "true" : "false",
+              )
+            }
+            if (fill) {
+              var progress = max > 0 ? track.scrollLeft / max : 0
+              fill.style.width = Math.min(Math.max(progress, 0), 1) * 100 + "%"
+            }
+          }
+
+          if (nextBtn)
+            nextBtn.addEventListener("click", function () {
+              if (nextBtn.classList.contains("is-disabled")) return
+              track.scrollBy({ left: pageWidth(), behavior: "smooth" })
+            })
+          if (prevBtn)
+            prevBtn.addEventListener("click", function () {
+              if (prevBtn.classList.contains("is-disabled")) return
+              track.scrollBy({ left: -pageWidth(), behavior: "smooth" })
+            })
+
+          var ticking = false
+          track.addEventListener(
+            "scroll",
+            function () {
+              if (!ticking) {
+                requestAnimationFrame(function () {
+                  updateState()
+                  ticking = false
+                })
+                ticking = true
+              }
+            },
+            { passive: true },
+          )
+          window.addEventListener("resize", updateState)
+          updateState()
+        })
+
+        // Scroll-driven collage effect
+        var section = document.getElementById("collageScroll")
+        var sticky = document.getElementById("collageSticky")
+        var floatEl = document.getElementById("collageFloat")
+        var placeholder = document.getElementById("collagePlaceholder")
+        if (!section || !sticky || !floatEl || !placeholder) return
+
+        var reduced =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+        function lerp(a, b, t) {
+          return a + (b - a) * t
+        }
+
+        function layout(progress) {
+          var stickyRect = sticky.getBoundingClientRect()
+          var placeholderRect = placeholder.getBoundingClientRect()
+
+          var fullW = stickyRect.width
+          var fullH = stickyRect.height
+          var fullTop = 0
+          var fullLeft = 0
+
+          var targetW = placeholderRect.width
+          var targetH = placeholderRect.height
+          var targetTop = placeholderRect.top - stickyRect.top
+          var targetLeft = placeholderRect.left - stickyRect.left
+
+          floatEl.style.width = lerp(fullW, targetW, progress) + "px"
+          floatEl.style.height = lerp(fullH, targetH, progress) + "px"
+          floatEl.style.top = lerp(fullTop, targetTop, progress) + "px"
+          floatEl.style.left = lerp(fullLeft, targetLeft, progress) + "px"
+          floatEl.style.borderRadius = lerp(0, 14, progress) + "px"
+        }
+
+        function onScroll() {
+          var rect = section.getBoundingClientRect()
+          var scrollDistance = section.offsetHeight - window.innerHeight
+          var progress = 1
+          if (scrollDistance > 0) {
+            progress = Math.min(Math.max(-rect.top / scrollDistance, 0), 1)
+          }
+          layout(progress)
+        }
+
+        if (reduced) {
+          section.style.height = "auto"
+          sticky.style.position = "relative"
+          sticky.style.height = "auto"
+          floatEl.style.position = "relative"
+          floatEl.style.width = "100%"
+          floatEl.style.height = "46vh"
+          floatEl.style.borderRadius = "14px"
+          placeholder.style.visibility = "visible"
+        } else {
+          var ticking = false
+          window.addEventListener(
+            "scroll",
+            function () {
+              if (!ticking) {
+                requestAnimationFrame(function () {
+                  onScroll()
+                  ticking = false
+                })
+                ticking = true
+              }
+            },
+            { passive: true },
+          )
+          window.addEventListener("resize", onScroll)
+          onScroll()
+        }
+      })()
+    </script>
+  </body>
+</html>
