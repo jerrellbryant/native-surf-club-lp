@@ -178,7 +178,7 @@
       /* ===== 2. Floating nav ===== */
       .navwrap {
         margin-top: 15px;
-        padding: 0 49px;
+        padding: 0 16px;
         position: sticky;
         top: 0;
         z-index: 100;
@@ -963,15 +963,62 @@
         max-width: var(--container);
         margin: 0 auto;
       }
-      @media (max-width: 820px) {
-        .footer-columns {
-          /* grid-template-columns: repeat(2, 1fr); */
+      .footer-col summary {
+        list-style: none;
+      }
+      .footer-col summary::-webkit-details-marker {
+        display: none;
+      }
+      .footer-col__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .footer-col__chevron {
+        width: 18px;
+        height: 18px;
+        stroke: var(--navy);
+        fill: none;
+        stroke-width: 2;
+        flex: none;
+        transition: transform 0.25s var(--ease);
+      }
+      .footer-col[open] .footer-col__chevron {
+        transform: rotate(180deg);
+      }
+      @media (min-width: 821px) {
+        .footer-col__toggle {
+          pointer-events: none;
+          cursor: default;
+        }
+        .footer-col__chevron {
           display: none;
         }
+        .footer-col h5 {
+          margin-bottom: 0;
+        }
+        .footer-col__links {
+          margin-top: 16px;
+        }
       }
-      @media (max-width: 480px) {
+      @media (max-width: 820px) {
         .footer-columns {
-          grid-template-columns: 1fr;
+          display: block;
+          border-top: 1px solid var(--navy);
+        }
+        .footer-col {
+          border-bottom: 1px solid var(--navy);
+        }
+        .footer-col__toggle {
+          cursor: pointer;
+          padding: 18px 4px;
+        }
+        .footer-col h5 {
+          margin-bottom: 0;
+        }
+        .footer-col__links {
+          padding: 0 4px 18px;
         }
       }
       .footer-col h5 {
@@ -980,7 +1027,6 @@
         font-weight: 800;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        margin-bottom: 16px;
       }
       .footer-col a {
         display: block;
@@ -1036,6 +1082,85 @@
         height: auto;
         background: none;
         border-radius: 0;
+      }
+
+      .footer-legal-bar {
+        background: var(--navy);
+        margin-top: 48px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        text-align: center;
+      }
+      .footer-legal-bar__copyright {
+        color: var(--white);
+        font-size: 13px;
+      }
+      .footer-legal-bar__link {
+        color: var(--white);
+        font-size: 13px;
+        text-decoration: underline;
+      }
+      .footer-legal-bar__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px 40px;
+        margin-top: 4px;
+      }
+      .footer-legal-bar__grid a {
+        color: var(--white);
+        font-size: 13px;
+        text-decoration: underline;
+      }
+      @media (max-width: 480px) {
+        .footer-legal-bar__grid {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          text-align: center;
+        }
+      }
+
+      .footer-privacy-notice {
+        background: var(--grey-bg);
+        border-top: 1px solid var(--grey-line);
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-privacy-notice__badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--navy);
+        font-size: 12.5px;
+        font-weight: 700;
+        text-decoration: underline;
+      }
+      .footer-privacy-notice__icon {
+        width: 28px;
+        height: 16px;
+        color: var(--navy);
+        flex: none;
+      }
+      .footer-privacy-notice__text {
+        font-size: 12.5px;
+        color: #444;
+      }
+
+      .footer-ccpa-link {
+        background: var(--grey-bg);
+        text-align: center;
+        padding: 0 24px 18px;
+      }
+      .footer-ccpa-link a {
+        font-size: 11.5px;
+        color: #444;
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -1809,45 +1934,204 @@
     <!-- 13. FOOTER -->
     <footer class="site-footer">
       <div class="footer-columns">
-        <div class="footer-col">
-          <h5>Products</h5>
-          <a href="#">Deodorant</a>
-          <a href="#">Body</a>
-          <a href="#">Hair</a>
-          <a href="#">Skincare</a>
-          <a href="#">Hand Soap</a>
-          <a href="#">Toothpaste</a>
-        </div>
-        <div class="footer-col">
-          <h5>Shop</h5>
-          <a href="#">New Arrivals</a>
-          <a href="#">Best Sellers</a>
-          <a href="#">Limited Edition</a>
-          <a href="#">Bundles</a>
-          <a href="#">Last Chance Scents</a>
-          <a href="#">Shop All</a>
-        </div>
-        <div class="footer-col">
-          <h5>Company</h5>
-          <a href="#">Ingredients</a>
-          <a href="#">Our Story</a>
-          <a href="#">Our Never List</a>
-          <a href="#">Blog</a>
-          <a href="#">Sensitive Series Explained</a>
-          <a href="#">Scents</a>
-        </div>
-        <div class="footer-col">
-          <h5>Support</h5>
-          <a href="#">Contact Us</a>
-          <a href="#">My Account</a>
-          <a href="#">Track Your Order</a>
-          <a href="#">Rewards</a>
-          <a href="#">FAQs</a>
-          <a href="#">Returns</a>
-          <a href="#">Loyalty Program Terms &amp; Conditions</a>
-          <a href="#">Creators Terms &amp; Conditions</a>
-          <a href="#">Sitemap</a>
-        </div>
+        <details class="footer-col" open>
+          <summary class="footer-col__toggle">
+            <h5>Products</h5>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="footer-col__links">
+            <a
+              href="https://www.nativecos.com/collections/shop-all?category_filter=deodorant"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Deodorant</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/shop-all?category_filter=body"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Body</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/shop-all?category_filter=hair"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Hair</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/shop-all?category_filter=skincare"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Skincare</a
+            >
+            <a
+              href="https://www.nativecos.com/products/hand-soap"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Hand Soap</a
+            >
+            <a
+              href="https://www.nativecos.com/products/toothpaste"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Toothpaste</a
+            >
+          </div>
+        </details>
+        <details class="footer-col" open>
+          <summary class="footer-col__toggle">
+            <h5>Shop</h5>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="footer-col__links">
+            <a
+              href="https://www.nativecos.com/collections/new-arrivals"
+              target="_blank"
+              rel="noopener noreferrer"
+              >New Arrivals</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/best-sellers"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Best Sellers</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/limited-edition"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Limited Edition</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/bundles"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Bundles</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/last-chance-scents"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Last Chance Scents</a
+            >
+            <a
+              href="https://www.nativecos.com/collections/shop-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Shop All</a
+            >
+          </div>
+        </details>
+        <details class="footer-col" open>
+          <summary class="footer-col__toggle">
+            <h5>Company</h5>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="footer-col__links">
+            <a
+              href="https://www.nativecos.com/pages/ingredients"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ingredients</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/about-us"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Our Story</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/native-never-list"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Our Never List</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/blogs"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Blog</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/sensitive-series-explained"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Sensitive Series Explained</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/scents"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Scents</a
+            >
+          </div>
+        </details>
+        <details class="footer-col" open>
+          <summary class="footer-col__toggle">
+            <h5>Support</h5>
+            <svg class="footer-col__chevron" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="footer-col__links">
+            <a
+              href="https://www.nativecos.com/pages/contact-us"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Contact Us</a
+            >
+            <a
+              href="https://www.nativecos.com/account/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              >My Account</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/track-your-order"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Track Your Order</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/rewards"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Rewards</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/faq"
+              target="_blank"
+              rel="noopener noreferrer"
+              >FAQs</a
+            >
+            <a
+              href="https://www.nativecos.com/apps/returns"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Returns</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/native-loyalty-program-terms-and-conditions"
+              >Loyalty Program Terms &amp; Conditions</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/creators-terms-and-conditions"
+              >Creators Terms &amp; Conditions</a
+            >
+            <a
+              href="https://www.nativecos.com/pages/sitemap"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Sitemap</a
+            >
+          </div>
+        </details>
       </div>
 
       <div class="footer-wordmark">Native</div>
@@ -1874,12 +2158,115 @@
           aria-label="Facebook"
           ><img src="img/icon-3.png" alt=""
         /></a>
-        <a href="#" aria-label="TYB" class="tyb">tyb</a>
+        <a
+          href="https://app.tyb.xyz/brand/native"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TYB"
+          class="tyb"
+          >tyb</a
+        >
+      </div>
+
+      <div class="footer-legal-bar">
+        <p class="footer-legal-bar__copyright">Copyright &copy; 2026, Native</p>
+        <a
+          class="footer-legal-bar__link"
+          href="https://privacypolicy.pg.com/CHD-en/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Consumer Health Data Privacy Policy</a
+        >
+        <div class="footer-legal-bar__grid">
+          <a
+            href="https://accessibility.pg.com/en-US"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Accessibility Statement</a
+          >
+          <a
+            href="https://termsandconditions.pg.com/en-us/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Terms and Conditions</a
+          >
+          <a
+            href="https://privacypolicy.pg.com/en-US/#statePrivacyNotice"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy</a
+          >
+          <a
+            href="https://www.nativecos.com/pages/cookie-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Cookie Policy</a
+          >
+        </div>
+      </div>
+
+      <div class="footer-privacy-notice">
+        <button class="footer-privacy-notice__badge" type="button">
+          <svg
+            class="footer-privacy-notice__icon"
+            viewBox="0 0 36 20"
+            aria-hidden="true"
+          >
+            <rect
+              x="1"
+              y="1"
+              width="34"
+              height="18"
+              rx="9"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <circle cx="13" cy="10" r="6.5" fill="currentColor" />
+            <path
+              d="M10 10l2 2 4-4.5"
+              stroke="#fff"
+              stroke-width="1.6"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Your Privacy Choices</span>
+        </button>
+        <p class="footer-privacy-notice__text">
+          NOTICE: We may sell your sensitive personal data
+        </p>
+      </div>
+
+      <div class="footer-ccpa-link">
+        <a
+          href="https://www.nativecos.com/pages/surf-club#onetrust-modal"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Do Not Sell or Share My Personal Information / Opt-Out of Targeted
+          Advertising</a
+        >
       </div>
     </footer>
 
     <script>
       ;(function () {
+        // Footer accordions: open by default on desktop, closed by default
+        // on mobile/tablet. Only re-syncs when the breakpoint is actually
+        // crossed, so it never overrides a visitor's manual toggle.
+        var footerIsDesktop = null
+        function syncFooterAccordions() {
+          var isDesktop = window.matchMedia("(min-width: 821px)").matches
+          if (isDesktop === footerIsDesktop) return
+          footerIsDesktop = isDesktop
+          document.querySelectorAll(".footer-col").forEach(function (d) {
+            d.open = isDesktop
+          })
+        }
+        syncFooterAccordions()
+        window.addEventListener("resize", syncFooterAccordions)
+
         // Hamburger menu (tablet/mobile)
         var burgerBtn = document.getElementById("burgerBtn")
         var mobileMenu = document.getElementById("mobileMenu")
